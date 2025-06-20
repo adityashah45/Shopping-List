@@ -99,4 +99,6 @@ p{
     font-size: 400;
     padding-bottom: 5px;
     outline:none;
+    opacity:0;
+    transition: opacity 0.15s;
 }

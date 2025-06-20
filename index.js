@@ -14,24 +14,27 @@ submit.addEventListener('click',(e)=>{
     let li = document.createElement('li');
     li.innerHTML = `<span>${item}</span><button class="xbtn">X</button>`;
     ul.appendChild(li)}
-    if(ul.firstElementChild){clearBtn.style.opacity=1}
+    if(ul.firstElementChild){clearBtn.style.opacity=1;filter.style.opacity=1}
 });
 ul.addEventListener('click',(e)=>{
     if(e.target.matches('.xbtn')){
+        
         e.target.parentNode.remove();
-        if(!ul.firstElementChild){clearBtn.style.opacity=0}
+        if(!ul.firstElementChild){clearBtn.style.opacity=0;filter.style.opacity=0}
     }
 });
 document.body.addEventListener('input',(e)=>{
-    if(filter.value){
+    if(filter.value && ul.firstElementChild){
         let word=e.target.value;
-        
-        
-    }
+        let filtered=Array.from(ul.childNodes).filter(child=>child.firstElementChild.textContent.includes(word));
+        Array.from(ul.childNodes).forEach((child)=>{if(!(filtered.includes(child))){
+            ul.removeChild(child)
+            if(!ul.firstElementChild){clearBtn.style.opacity=0}
+        }})}
 });
 clearBtn.addEventListener('click',()=>{
     if(!ul.firstElementChild){alert('There are no items left to remove!!\n\nPlease add something to the list')};
     while(ul.firstChild){ul.removeChild(ul.firstChild)};
-    clearBtn.style.opacity=0
-})
-console.log(ul.childNodes[0].childNodes[0].textContent)
+    clearBtn.style.opacity=0;
+    filter.style.opacity=0;
+});
