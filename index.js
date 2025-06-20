@@ -23,14 +23,15 @@ ul.addEventListener('click',(e)=>{
         if(!ul.firstElementChild){clearBtn.style.opacity=0;filter.style.opacity=0}
     }
 });
-document.body.addEventListener('input',(e)=>{
-    if(filter.value && ul.firstElementChild){
-        let word=e.target.value;
-        let filtered=Array.from(ul.childNodes).filter(child=>child.firstElementChild.textContent.includes(word));
-        Array.from(ul.childNodes).forEach((child)=>{if(!(filtered.includes(child))){
-            ul.removeChild(child)
-            if(!ul.firstElementChild){clearBtn.style.opacity=0}
-        }})}
+document.body.addEventListener('input', (e) => {
+    if (e.target === filter && ul.firstElementChild) {
+        let word = e.target.value.toLowerCase();
+        Array.from(ul.children).forEach((child) => {
+            const text = child.firstElementChild.textContent.toLowerCase();
+            child.style.display = text.includes(word) ? '' : 'none';
+            if(!ul.firstElementChild){clearBtn.style.opacity=0};
+        });
+    }
 });
 clearBtn.addEventListener('click',()=>{
     if(!ul.firstElementChild){alert('There are no items left to remove!!\n\nPlease add something to the list')};
@@ -38,3 +39,7 @@ clearBtn.addEventListener('click',()=>{
     clearBtn.style.opacity=0;
     filter.style.opacity=0;
 });
+document.body.addEventListener('click', (e) => {
+    if(e.target.parentNode.className==='imgContainer'){
+        filter.value='';
+        Array.from(ul.children).forEach((child) => {if(child.style.display==='none'){child.style.display = ""}})}});
