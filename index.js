@@ -82,7 +82,7 @@ function clearAllItems() {
     while (ul.firstChild) {
         ul.removeChild(ul.firstChild);
     }
-    itemList.splice(0,itemList.len);
+    itemList.splice(0,itemList.length);
     hideControls();
 }
 
