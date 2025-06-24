@@ -45,11 +45,40 @@ img{
     border-radius: 20px;
     cursor: pointer;
 }
+.lis{
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.lis::-webkit-scrollbar {
+  width:8px;
+  background-color: rgb(237, 244, 228);
+  
+}
+
+.lis::-webkit-scrollbar-track {
+  background: rgb(237, 244, 228); 
+  border-radius: 10px;
+}
+
+.lis::-webkit-scrollbar-thumb {
+  background-color: rgb(237, 244, 228); 
+  border-radius: 10px;
+  transition: background-color 5s;
+}
+
+.lis:hover::-webkit-scrollbar-thumb{
+  background-color: rgb(237, 244, 228); 
+}
+
+
+
 .lis ul{
     list-style-type: none;
 }
 .lis li{
-    margin-left: -40px;
+    margin-left: -35px;
+    margin-right: 5px;
     border-radius: 5px;
     padding-top: 8px;
     padding-bottom:5px;
